@@ -1,27 +1,23 @@
-ESTACIONAMENTO JONATHAN - VERCEL
+ESTACIONAMENTO JONATHAN — VERCEL + BANCO
 
-O projeto é estático e não precisa de Node.js nem build.
+Este projeto usa:
+- index.html
+- /api/estacionamento.js
+- Neon Postgres (via DATABASE_URL)
 
-ARQUIVO PRINCIPAL:
-index.html
+COMO PUBLICAR
+1. Crie um banco PostgreSQL no Neon (ou conecte um banco PostgreSQL compatível).
+2. Na Vercel, importe este projeto.
+3. Em Settings > Environment Variables, crie DATABASE_URL com a connection string do banco.
+4. Faça um novo deploy.
+5. Abra o site. A API cria a tabela automaticamente na primeira chamada.
 
-COMO PUBLICAR:
-1. Entre em https://vercel.com/
-2. Faça login.
-3. Clique em Add New -> Project.
-4. Se estiver usando GitHub, envie a pasta para um repositório e importe o projeto.
-5. Se estiver usando a opção de upload/drag-and-drop disponível na sua conta, envie esta pasta/projeto.
-6. Não é necessário configurar Framework Preset, Build Command ou Output Directory para este site estático.
+SINCRONIZAÇÃO
+Os administradores consultam o servidor a cada 1,5 segundo. Quando alguém registra entrada/saída, todos os outros painéis recebem o estado atualizado sem precisar apertar F5.
 
-LOGIN DO ADMIN:
+LOGIN
 Usuário: admin
 Senha: admin
 
-IMPORTANTE SOBRE TEMPO REAL:
-O index.html já contém suporte para Supabase Realtime, mas a URL e a chave pública do seu projeto ainda precisam ser colocadas no próprio index.html. Sem essas credenciais, o site funciona usando o armazenamento local do navegador, então os dados não são compartilhados entre aparelhos.
-
-No index.html, procure por:
-SUPABASE_URL
-SUPABASE_ANON_KEY
-
-Depois de configurar o Supabase e as tabelas/policies, o mesmo index.html passa a sincronizar entre dispositivos.
+OBSERVAÇÃO DE SEGURANÇA
+O login admin/admin continua sendo uma proteção visual no navegador. Para produção real, substitua por autenticação de servidor.

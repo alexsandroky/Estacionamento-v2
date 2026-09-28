@@ -232,6 +232,71 @@
     background: var(--faixa); color: var(--tinta); padding: .4rem .9rem; border-radius: 999px; font-size: .9rem;
   }
   .selo-admin::before { content: ""; width: .55rem; height: .55rem; border-radius: 50%; background: var(--livre); }
+
+  /* ===== Visual moderno ===== */
+  :root {
+    --concreto: #f4f7fb;
+    --concreto-escuro: #d9e1ea;
+    --asfalto: #111827;
+    --tinta: #172033;
+    --placa: #172033;
+    --faixa: #f5b942;
+    --livre: #16a36a;
+    --ocupada: #e25555;
+    --branco: #ffffff;
+    --azul: #3b82f6;
+    --sombra: 0 18px 45px rgba(23,32,51,.10);
+    --sombra-leve: 0 8px 24px rgba(23,32,51,.08);
+  }
+  body { background: linear-gradient(180deg,#f8fafc 0%,#eef3f8 100%); color:var(--tinta); font-family: var(--texto); }
+  .topo { position: sticky; top:0; z-index:20; background:rgba(255,255,255,.92); backdrop-filter:blur(14px); border-bottom:1px solid #e5eaf0; box-shadow:0 4px 20px rgba(23,32,51,.05); }
+  .marca span:last-child { letter-spacing:-.02em; }
+  .placa { background:linear-gradient(135deg,#172033,#334155); border:0; box-shadow:0 0 0 2px #172033; }
+  .menu { align-items:center; gap:.45rem; }
+  .menu a { padding:.6rem .85rem; border:0; border-radius:10px; transition:.2s ease; }
+  .menu a:hover { background:#eef2f7; border:0; }
+  .menu .menu-destaque { background:var(--tinta); color:#fff; box-shadow:0 5px 16px rgba(23,32,51,.16); }
+  .menu .menu-destaque:hover { background:#26344d; color:#fff; }
+  .menu-destaque span { display:inline-block; margin-left:.25rem; padding:.12rem .4rem; border-radius:999px; background:var(--faixa); color:#172033; font-size:.7rem; font-weight:700; }
+  .hero { padding-top:4rem; }
+  .hero h1 { letter-spacing:-.045em; color:#111827; }
+  .hero h1 small { color:#64748b; }
+  .situacao { color:#475569; }
+  .ponto { border:0; box-shadow:0 0 0 5px rgba(22,163,106,.12); background:var(--livre); }
+  .ponto.noite { background:#64748b; box-shadow:0 0 0 5px rgba(100,116,139,.12); }
+  .botao { border:0; border-radius:11px; background:var(--tinta); box-shadow:var(--sombra-leve); transition:transform .18s ease,box-shadow .18s ease,background .18s ease; }
+  .botao:hover { transform:translateY(-2px); background:#26344d; box-shadow:0 10px 24px rgba(23,32,51,.16); }
+  .botao.claro { background:#fff; border:1px solid #dce4ed; box-shadow:none; }
+  .botao.claro:hover { background:#f1f5f9; color:var(--tinta); }
+  .lote { background:#182334; border-radius:18px; padding:1.25rem; box-shadow:var(--sombra); border:1px solid rgba(255,255,255,.08); }
+  .vaga { border-color:rgba(255,255,255,.16); }
+  .carro { background:var(--ocupada); border-radius:8px; }
+  section { padding:5rem 0; }
+  section.clara { background:rgba(255,255,255,.72); border-block:1px solid #e7edf3; }
+  section h2 { letter-spacing:-.035em; color:#111827; }
+  .precos-tabela, .registro { background:#fff; border:1px solid #e1e8f0; border-radius:16px; overflow:hidden; box-shadow:var(--sombra-leve); }
+  table { border-collapse:separate; border-spacing:0; }
+  caption { padding:1.25rem 1.25rem .65rem; color:#111827; }
+  th,td { padding:1rem 1.25rem; border-bottom:1px solid #edf1f5; }
+  thead th { background:#f7f9fc; border-bottom:1px solid #e1e8f0; color:#475569; font-size:.9rem; text-transform:uppercase; letter-spacing:.04em; }
+  tbody tr:last-child th,tbody tr:last-child td { border-bottom:0; }
+  tbody tr:hover { background:#f8fafc; }
+  .calculadora,.painel,.acesso-restrito { border:1px solid #e1e8f0; box-shadow:var(--sombra-leve); border-radius:18px; }
+  .calculadora { padding:2rem; }
+  select,input[type="number"],input[type="text"],input[type="tel"],input[type="password"] { border:1px solid #d6e0ea; border-radius:10px; background:#fff; transition:.2s; }
+  select:focus,input:focus { border-color:var(--azul); box-shadow:0 0 0 4px rgba(59,130,246,.10); outline:none; }
+  .ajuda { color:#64748b; }
+  .resultado { border-top:1px solid #e1e8f0; }
+  .resultado output { color:#111827; }
+  .painel { background:#fff; }
+  .mensagem { border-radius:10px; box-shadow:none; }
+  .registros h3 { color:#111827; }
+  .registro tbody th { color:#172033; }
+  .registro td.valor { color:#0f8a59; }
+  .selo-admin { background:#eaf8f2; color:#087c4f; }
+  footer { background:#111827; color:#cbd5e1; }
+  @media (max-width:700px) { .menu { width:100%; overflow:auto; flex-wrap:nowrap; padding-bottom:.15rem; } .menu a { white-space:nowrap; } .hero { padding-top:2.5rem; } }
+
 </style>
 </head>
 <body>
@@ -244,6 +309,7 @@
     </a>
     <nav class="menu" aria-label="Principal">
       <a href="#vagas">Vagas</a>
+      <a class="menu-destaque" href="cadastro-vagas.html" target="_blank" rel="noopener">Cadastro de vagas <span>Admin</span></a>
       <a href="#precos">Preços</a>
       <a href="#aplicativo">Aplicativo</a>
       <a href="#chegar">Como chegar</a>
@@ -351,6 +417,11 @@
               <div class="campo">
                 <label for="telefone-veiculo">Telefone</label>
                 <input id="telefone-veiculo" type="tel" inputmode="tel" autocomplete="off" placeholder="(00) 00000-0000">
+              </div>
+              <div class="campo">
+                <label for="vaga-veiculo">Vaga onde o veículo ficará</label>
+                <select id="vaga-veiculo"></select>
+                <span class="ajuda">Escolha uma das 20 vagas livres para este veículo.</span>
               </div>
               <button class="botao" type="submit">Registrar entrada</button>
             </form>
@@ -644,6 +715,7 @@ const ADMIN_SENHA = "admin";
   const campoPlaca = document.getElementById("placa-veiculo");
   const campoCor = document.getElementById("cor-veiculo");
   const campoTelefone = document.getElementById("telefone-veiculo");
+  const campoVaga = document.getElementById("vaga-veiculo");
   const mensagem = document.getElementById("mensagem");
   const corpoPatio = document.getElementById("corpo-patio");
   const corpoSaidas = document.getElementById("corpo-saidas");
@@ -651,6 +723,21 @@ const ADMIN_SENHA = "admin";
   function avisar(texto, erro) {
     mensagem.textContent = texto;
     mensagem.className = "mensagem" + (erro ? " erro" : "");
+  }
+
+  function atualizarVagasDisponiveis() {
+    const atual = campoVaga.value;
+    const ocupadas = dados.patio.map(function (v) { return Number(v.vaga); });
+    campoVaga.textContent = "";
+    for (let n = 1; n <= TOTAL_VAGAS; n++) {
+      if (!ocupadas.includes(n)) {
+        const opcao = document.createElement("option");
+        opcao.value = n;
+        opcao.textContent = "Vaga " + n + " — livre";
+        campoVaga.appendChild(opcao);
+      }
+    }
+    if ([...campoVaga.options].some(function (o) { return o.value === atual; })) campoVaga.value = atual;
   }
 
   function celula(tag, texto) {
@@ -741,6 +828,7 @@ const ADMIN_SENHA = "admin";
     desenharPatioRegistros();
     desenharSaidas();
     desenharPatio(dados.patio.map(function (v) { return v.vaga; }));
+    atualizarVagasDisponiveis();
   }
 
   function registrarEntrada(evento) {
@@ -770,9 +858,10 @@ const ADMIN_SENHA = "admin";
       return;
     }
 
-    const vaga = proximaVaga();
-    if (vaga === null) {
-      avisar("Pátio lotado: as " + TOTAL_VAGAS + " vagas estão ocupadas.", true);
+    const vaga = Number(campoVaga.value);
+    if (!vaga || vaga < 1 || vaga > TOTAL_VAGAS || dados.patio.some(function (v) { return Number(v.vaga) === vaga; })) {
+      avisar("Escolha uma vaga livre entre as " + TOTAL_VAGAS + " posições.", true);
+      atualizarVagasDisponiveis();
       return;
     }
 
@@ -818,6 +907,10 @@ const ADMIN_SENHA = "admin";
   desenharTudo();
   setInterval(desenharPatioRegistros, 30000);
 })();
+
+window.addEventListener("storage", function (evento) {
+  if (evento.key === "estacionamento:registros") window.location.reload();
+});
 
 document.getElementById("ano").textContent = new Date().getFullYear();
 </script>

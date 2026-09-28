@@ -297,6 +297,23 @@
   footer { background:#111827; color:#cbd5e1; }
   @media (max-width:700px) { .menu { width:100%; overflow:auto; flex-wrap:nowrap; padding-bottom:.15rem; } .menu a { white-space:nowrap; } .hero { padding-top:2.5rem; } }
 
+
+  /* Modo Cadastro de Vagas: continua dentro deste mesmo index.html */
+  body.admin-only .banner,
+  body.admin-only main > .hero,
+  body.admin-only main > section:not(#aplicativo),
+  body.admin-only footer { display:none !important; }
+  body.admin-only main { min-height:calc(100vh - 82px); padding:2rem 0 4rem; background:linear-gradient(180deg,#f7f9fc 0%,#eef3f8 100%); }
+  body.admin-only #aplicativo { display:block !important; padding-top:1rem; }
+  body.admin-only #aplicativo::before { content:"PAINEL ADMINISTRATIVO"; display:block; max-width:1100px; margin:0 auto 1rem; padding:0 1rem; color:#3b82f6; font-size:.78rem; font-weight:800; letter-spacing:.14em; }
+  body.admin-only #aplicativo h2 { font-size:clamp(2rem,4vw,3rem); letter-spacing:-.04em; }
+  body.admin-only .topo .marca { pointer-events:none; }
+  body.admin-only .menu a:not(.menu-destaque) { display:none; }
+  body.admin-only .menu-destaque { font-size:0; }
+  body.admin-only .menu-destaque::before { content:"← Voltar ao site"; font-size:.95rem; }
+  body.admin-only .menu-destaque span { display:none; }
+  .texto-admin { max-width:720px; margin:0 auto 2rem; padding:1rem 1.15rem; border:1px solid #dce4ed; border-radius:16px; background:#fff; color:#526174; box-shadow:0 8px 25px rgba(23,32,51,.05); }
+  .texto-admin strong { color:#172033; }
 </style>
 </head>
 <body>
@@ -309,7 +326,7 @@
     </a>
     <nav class="menu" aria-label="Principal">
       <a href="#vagas">Vagas</a>
-      <a class="menu-destaque" href="cadastro-vagas.html" target="_blank" rel="noopener">Cadastro de vagas <span>Admin</span></a>
+      <a class="menu-destaque" href="index.html?admin=1" target="_blank" rel="noopener">Cadastro de vagas <span>Admin</span></a>
       <a href="#precos">Preços</a>
       <a href="#aplicativo">Aplicativo</a>
       <a href="#chegar">Como chegar</a>
@@ -369,7 +386,8 @@
 
   <section class="clara" id="aplicativo">
     <div class="conteudo">
-      <h2>Aplicativo do estacionamento</h2>
+      <h2>Cadastro de vagas e controle do pátio</h2>
+      <div class="texto-admin"><strong>Como funciona:</strong> faça o login de administrador, informe os dados do veículo e escolha exatamente qual das 20 vagas ele vai ocupar. A vaga escolhida fica marcada como ocupada no mapa. Ao registrar a saída, ela volta automaticamente para a lista de vagas livres.</div>
       <p class="ajuda" style="margin:-1rem auto 2rem; max-width:56ch">Área restrita: somente o administrador registra entradas e saídas de veículos.</p>
 
       <div class="acesso-restrito" id="tela-login">
@@ -913,6 +931,23 @@ window.addEventListener("storage", function (evento) {
 });
 
 document.getElementById("ano").textContent = new Date().getFullYear();
+
+// O mesmo index.html também funciona como a aba de cadastro administrativo.
+(function modoCadastroUnico() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("admin") !== "1") return;
+  document.body.classList.add("admin-only");
+  const link = document.querySelector(".menu-destaque");
+  if (link) {
+    link.href = "index.html";
+    link.target = "_self";
+    link.removeAttribute("rel");
+  }
+  const titulo = document.querySelector("#aplicativo h2");
+  if (titulo) titulo.textContent = "Cadastro de vagas e controle do pátio";
+  const subtitulo = document.querySelector("#aplicativo > .conteudo > p");
+  if (subtitulo) subtitulo.textContent = "Área restrita: somente o administrador registra entradas, escolhe vagas e registra saídas.";
+})();
 </script>
 </body>
 </html>

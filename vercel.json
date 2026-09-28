@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/estado.js": {
+      "maxDuration": 10
+    }
+  }
+}
